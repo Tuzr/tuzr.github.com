@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[NSLog(@"I'm tuzr");]]></title>
-  <link href="http://tuzr.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Tuzr | NSLog(@"I'm tuzr");]]></title>
+  <link href="http://tuzr.github.io/blog/categories/tuzr/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
   <updated>2015-07-29T17:09:53+08:00</updated>
   <id>http://tuzr.github.io/</id>
@@ -28,13 +28,10 @@
 
 <h6>3. Senior Engineer @Amigo Technology Inc.</h6>
 
-<figure class='code'><figcaption><span>Test Code </span></figcaption>
+<p><figure class='code'><figcaption><span>Test Code </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello World&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLog</span><span class="p">(@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Hello</span> <span class="n">World</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>
+</span></code></pre></td></tr></table></div></figure></p>
 ]]></content>
   </entry>
   
