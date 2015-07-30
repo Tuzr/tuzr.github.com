@@ -4,7 +4,7 @@
   <title><![CDATA[NSLog(@"I'm tuzr");]]></title>
   <link href="http://tuzr.github.io/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
-  <updated>2015-07-30T09:54:57+08:00</updated>
+  <updated>2015-07-30T13:32:03+08:00</updated>
   <id>http://tuzr.github.io/</id>
   <author>
     <name><![CDATA[tuzr]]></name>
@@ -19,14 +19,6 @@
     <updated>2015-07-29T16:31:32+08:00</updated>
     <id>http://tuzr.github.io/blog/2015/07/29/first-open</id>
     <content type="html"><![CDATA[<p>Hello , everyone</p>
-
-<h3>Experience</h3>
-
-<h6>1. Application Engineer @Sinopulsar Technology Inc.</h6>
-
-<h6>2. RD Engineer @DAE Instrumnet Inc.</h6>
-
-<h6>3. Senior Engineer @Amigo Technology Inc.</h6>
 
 <figure class='code'><figcaption><span>Test Code </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
