@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Supershy 極度害躁]]></title>
-  <link href="http://tuzr.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ios | Supershy 極度害躁]]></title>
+  <link href="http://tuzr.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
   <updated>2015-08-18T17:47:19+08:00</updated>
   <id>http://tuzr.github.io/</id>
@@ -65,34 +65,16 @@
 
 <p>參考如下範例:</p>
 
-<figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
+<p><figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">headerView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">_tev</span><span class="p">.</span><span class="n">frame</span><span class="p">),</span> <span class="n">height</span><span class="p">);</span>
 </span><span class='line'><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="o">=</span> <span class="n">headerView</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3>參考資料</h3>
 
 <p><a href=https://davidjhinson.wordpress.com/2009/03/24/resizing-a-uitableviews-tableheaderview/>Resizing a UITableView&rsquo;s tableHeaderView</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First Open]]></title>
-    <link href="http://tuzr.github.io/blog/2015/07/29/first-open/"/>
-    <updated>2015-07-29T16:31:32+08:00</updated>
-    <id>http://tuzr.github.io/blog/2015/07/29/first-open</id>
-    <content type="html"><![CDATA[<p>Hello , everyone</p>
-
-<figure class='code'><figcaption><span>Test Code </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello World&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
