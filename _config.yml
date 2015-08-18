@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://tuzr.github.io
-title: NSLog(@"I'm tuzr");
-subtitle: supershy 極度害躁
+title: Supershy 極度害躁
+subtitle: supershy
 author: tuzr
 simple_search: https://www.google.com/search
 description:
@@ -16,7 +16,7 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
+subscribe_rss:
 subscribe_email:
 # RSS feeds can list your email address if you like
 email: tuzr2002@gmail.com
@@ -71,7 +71,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user:
-twitter_tweet_button: true
+twitter_tweet_button: false
 
 # Google +1
 google_plus_one: true
@@ -92,7 +92,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name:
-disqus_show_comment_count: false
+disqus_show_comment_count: true
 
 # Google Analytics
 google_analytics_tracking_id:
