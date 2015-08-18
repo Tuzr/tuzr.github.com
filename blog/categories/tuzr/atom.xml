@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: tuzr | Supershy 極度害躁]]></title>
+  <link href="http://tuzr.github.io/blog/categories/tuzr/atom.xml" rel="self"/>
+  <link href="http://tuzr.github.io/"/>
+  <updated>2015-07-30T15:15:35+08:00</updated>
+  <id>http://tuzr.github.io/</id>
+  <author>
+    <name><![CDATA[tuzr]]></name>
+    <email><![CDATA[tuzr2002@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[First Open]]></title>
+    <link href="http://tuzr.github.io/blog/2015/07/29/first-open/"/>
+    <updated>2015-07-29T16:31:32+08:00</updated>
+    <id>http://tuzr.github.io/blog/2015/07/29/first-open</id>
+    <content type="html"><![CDATA[<p>Hello , everyone</p>
+
+<p><figure class='code'><figcaption><span>Test Code </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLog</span><span class="p">(@</span><span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="n">Hello</span> <span class="n">World</span><span class="o">&amp;</span><span class="n">rdquo</span><span class="p">;);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+]]></content>
+  </entry>
+  
+</feed>
