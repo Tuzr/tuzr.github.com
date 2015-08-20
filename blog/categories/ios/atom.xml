@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Supershy 極度害躁]]></title>
   <link href="http://tuzr.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
-  <updated>2015-08-18T17:57:57+08:00</updated>
+  <updated>2015-08-20T14:17:43+08:00</updated>
   <id>http://tuzr.github.io/</id>
   <author>
     <name><![CDATA[tuzr]]></name>
@@ -71,6 +71,9 @@
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">headerView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">_tev</span><span class="p">.</span><span class="n">frame</span><span class="p">),</span> <span class="n">height</span><span class="p">);</span>
 </span><span class='line'><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="o">=</span> <span class="n">headerView</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></p>
+
+<p>如有興趣可以下載整個Demo專案:
+<a href=https://github.com/Tuzr/tableHeaderViewDemo>tableHeaderViewDemo</a></p>
 
 <h3>參考資料</h3>
 
