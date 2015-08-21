@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: ios | Supershy 極度害躁]]></title>
-  <link href="http://tuzr.github.io/blog/categories/ios/atom.xml" rel="self"/>
+  <title><![CDATA[Category: uitableview | Supershy 極度害躁]]></title>
+  <link href="http://tuzr.github.io/blog/categories/uitableview/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
   <updated>2015-08-21T15:41:57+08:00</updated>
   <id>http://tuzr.github.io/</id>
@@ -131,77 +131,6 @@ tintColor為 旋轉圈圈的顏色,
 <p><a href=http://www.appcoda.com/pull-to-refresh-uitableview-empty/>Pull to refresh uitableviw</a></p>
 
 <p><a href=https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/>官方文件</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[UItableView:改變tableHeaderView大小]]></title>
-    <link href="http://tuzr.github.io/blog/2015/08/18/title/"/>
-    <updated>2015-08-18T15:44:52+08:00</updated>
-    <id>http://tuzr.github.io/blog/2015/08/18/title</id>
-    <content type="html"><![CDATA[<h3>前言</h3>
-
-<p>最近遇到一個狀況,在原有的tableView上面,必須要增加新的欄位.<br/>
-這時候有兩個方式:</p>
-
-<ul>
-<li>加入一個Section</li>
-<li>使用tableView本身的tableHeaderView去實作</li>
-</ul>
-
-
-<p>這兩個方法各有優缺,如果增加的不是一行一行的tableView類型,那就得用tableHeaderView去實作。</p>
-
-<!--more-->
-
-
-<p>畢竟tableHeaderView就是獨立的View,我們可以自訂裡面所顯示的內容。</p>
-
-<p>相對的如果是一行一行的tabeleView類型,就可以利用增加Section的方式,</p>
-
-<p>在Section 0這個位置插入一個Section,原本的Section 0往下移變成Section 1。</p>
-
-<h3>實作</h3>
-
-<pre><code>    But 人生就是這個 But...       
-</code></pre>
-
-<p>新增的欄位,可能跟原本tableView的欄位資料完全不相干,</p>
-
-<p>這個新增的Section反而成了大麻煩,</p>
-
-<p>要特別為了他改寫TableViewDataSource,TablieViewDeleGate相關function.</p>
-
-<p>甚至cell也要重寫。</p>
-
-<p>因此&hellip;</p>
-
-<p>我決定另外設計一個tableView,用來顯示在原本tableView的tableHeaderView.(好繞口)</p>
-
-<p>也就是tableView A的tableHeaderView是tableView B,如此便可以達到完全獨立不會互相影響.</p>
-
-<pre><code>    當tableHeaderView改變大小的時候,原有的tableView還會正常顯示嗎?  
-</code></pre>
-
-<p>是的,不會!!!! 當tableHeaderView長大的時候,原本tableView的第一列可能會被蓋住!</p>
-
-<p>解決方法：當改變tableHeaderView的大小之後,重新指定給原本的tableView.</p>
-
-<p>參考如下範例:</p>
-
-<p><figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">headerView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">_tev</span><span class="p">.</span><span class="n">frame</span><span class="p">),</span> <span class="n">height</span><span class="p">);</span>
-</span><span class='line'><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="o">=</span> <span class="n">headerView</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>如有興趣可以下載整個Demo專案:
-<a href=https://github.com/Tuzr/tableHeaderViewDemo>tableHeaderViewDemo</a></p>
-
-<h3>參考資料</h3>
-
-<p><a href=https://davidjhinson.wordpress.com/2009/03/24/resizing-a-uitableviews-tableheaderview/>Resizing a UITableView&rsquo;s tableHeaderView</a></p>
 ]]></content>
   </entry>
   
