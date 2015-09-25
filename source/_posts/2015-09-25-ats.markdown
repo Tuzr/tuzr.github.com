@@ -1,0 +1,49 @@
+---
+layout: post
+title: "iOS 9 HTTP 連線限制"
+date: 2015-09-25 14:09:55 +0800
+comments: true
+categories: iOS HTTP
+---
+###Issue
+更新至iOS 9 之後, 執行App會有警告如下, 並且無法連線.
+
+App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+
+<!--more-->
+###Solution
+因為iOS 9 有ATS (App Transport Security), 限制了呼叫HTTP都要用HTTPS , 並且使用TLS 1.2認證.
+
+但如果server並沒有支援TLS認證,就需要在appname_info.plist新增如下
+
+{% img /images//2015/09/20150925_1.png %}
+
+<font color=#FF0000 size=3>這是關閉所有的ATS , 並不建議採用,正確做法應該使用例外的domain,如下列方法.</font>
+
+{%codeblock info.plist lang:xml %}
+<key>NSAppTransportSecurity</key>
+<dict>
+  <key>NSExceptionDomains</key>
+  <dict>
+    <key>yourserver.com</key>
+    <dict>
+      <!--Include to allow subdomains-->
+      <key>NSIncludesSubdomains</key>
+      <true/>
+      <!--Include to allow HTTP requests-->
+      <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+      <true/>
+      <!--Include to specify minimum TLS version-->
+      <key>NSTemporaryExceptionMinimumTLSVersion</key>
+      <string>TLSv1.1</string>
+    </dict>
+  </dict>
+</dict>
+{%endcodeblock %}
+
+###參考資料
+<a href=https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/>官方文件</a>
+
+<a href=http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/>configuring-app-transport-security-ios-9</a>
+
+<a href=http://stackoverflow.com/questions/31254725/transport-security-has-blocked-a-cleartext-http/32560433#32560433>transport-security-has-blocked-a-cleartext-http</a>
