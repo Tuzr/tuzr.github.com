@@ -4,7 +4,7 @@
   <title><![CDATA[Supershy 極度害躁]]></title>
   <link href="http://tuzr.github.io/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
-  <updated>2015-08-21T15:41:57+08:00</updated>
+  <updated>2015-09-25T14:43:30+08:00</updated>
   <id>http://tuzr.github.io/</id>
   <author>
     <name><![CDATA[tuzr]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[iOS 9 HTTP 連線限制]]></title>
+    <link href="http://tuzr.github.io/blog/2015/09/25/ats/"/>
+    <updated>2015-09-25T14:09:55+08:00</updated>
+    <id>http://tuzr.github.io/blog/2015/09/25/ats</id>
+    <content type="html"><![CDATA[<h3>Issue</h3>
+
+<p>更新至iOS 9 之後, 執行App會有警告如下, 並且無法連線.</p>
+
+<p>App Transport Security has blocked a cleartext HTTP (<a href="http://">http://</a>) resource load since it is insecure. Temporary exceptions can be configured via your app&rsquo;s Info.plist file.</p>
+
+<!--more-->
+
+
+<h3>Solution</h3>
+
+<p>因為iOS 9 有ATS (App Transport Security), 限制了呼叫HTTP都要用HTTPS , 並且使用TLS 1.2認證.</p>
+
+<p>但如果server並沒有支援TLS認證,就需要在appname_info.plist新增如下</p>
+
+<p><img src="http://tuzr.github.io/images//2015/09/20150925_1.png"></p>
+
+<p><font color=#FF0000 size=3>這是關閉所有的ATS , 並不建議採用,正確做法應該使用例外的domain,如下列方法.</font></p>
+
+<figure class='code'><figcaption><span>info.plist </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;key&gt;</span>NSAppTransportSecurity<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'><span class="nt">&lt;dict&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;key&gt;</span>NSExceptionDomains<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;dict&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;key&gt;</span>yourserver.com<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;dict&gt;</span>
+</span><span class='line'>      <span class="c">&lt;!--Include to allow subdomains--&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;key&gt;</span>NSIncludesSubdomains<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;true/&gt;</span>
+</span><span class='line'>      <span class="c">&lt;!--Include to allow HTTP requests--&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;key&gt;</span>NSTemporaryExceptionAllowsInsecureHTTPLoads<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;true/&gt;</span>
+</span><span class='line'>      <span class="c">&lt;!--Include to specify minimum TLS version--&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;key&gt;</span>NSTemporaryExceptionMinimumTLSVersion<span class="nt">&lt;/key&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;string&gt;</span>TLSv1.1<span class="nt">&lt;/string&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/dict&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/dict&gt;</span>
+</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>參考資料</h3>
+
+<p><a href=https://developer.apple.com/library/prerelease/ios/technotes/App-Transport-Security-Technote/>官方文件</a></p>
+
+<p><a href=http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/>configuring-app-transport-security-ios-9</a></p>
+
+<p><a href=http://stackoverflow.com/questions/31254725/transport-security-has-blocked-a-cleartext-http/32560433#32560433>transport-security-has-blocked-a-cleartext-http</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[UITableView 下拉更新]]></title>
