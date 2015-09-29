@@ -1,0 +1,255 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>UITableView 下拉更新 - Supershy 極度害躁</title>
+	<meta name="author" content="tuzr">
+
+	
+	<meta name="description" content="UITableView 下拉更新 前言 許多App有下拉選單,即可更新的功能. 自己使用TableView想要達到類似功能,google了一下,做了demo. 實作 使用RefreshControl即可達成目的. 首先在viewWillApper裡面加入下列code, &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="" rel="alternate" title="Supershy 極度害躁" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://tuzr.github.io/blog/2015/08/21/refresh-control/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Nunito:400,300,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+  
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("tuzr2002@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+
+<nav id="main-nav"><ul class="main">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/about">About Me</a></li>
+    <li><a href="/blog/archives">Archives</a></li>    
+</ul>
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:tuzr2002@gmail.com" title="Email">Email</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+    	
+    	
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">UITableView 下拉更新</h1>
+	<div class="entry-content" itemprop="articleBody"><h3>前言</h3>
+
+<p>許多App有下拉選單,即可更新的功能.</p>
+
+<p>自己使用TableView想要達到類似功能,google了一下,做了demo.</p>
+
+<!--more-->
+
+
+<h3>實作</h3>
+
+<p>使用RefreshControl即可達成目的.</p>
+
+<p>首先在viewWillApper裡面加入下列code,</p>
+
+<p>baclgroundColor為"上方更新畫面"的背景顏色,
+tintColor為 旋轉圈圈的顏色,
+最後當下拉的時候會呼叫relodData()</p>
+
+<figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">super</span> <span class="nl">viewWillAppear</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="n">reloadData</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIRefreshControl</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">];</span>
+</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="nl">addTarget</span><span class="p">:</span><span class="nb">self</span>
+</span><span class='line'>                            <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">reloadData</span><span class="p">)</span>
+</span><span class='line'>                  <span class="nl">forControlEvents</span><span class="p">:</span><span class="n">UIControlEventValueChanged</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>在更新畫面中,除了轉圈之外,還有顯示更新的日期時間.</p>
+
+<p>更新完成之後,記得加上endRefreshing結束刷新畫面.</p>
+
+<pre><code>[self.refreshControl endRefreshing];
+</code></pre>
+
+<figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">reloadData</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="c1">//載入資料</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="bp">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>        <span class="p">[</span><span class="n">formatter</span> <span class="nl">setDateFormat</span><span class="p">:</span><span class="s">@&quot;MMM d, h:mm:ss a&quot;</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;Last update: %@&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">formatter</span> <span class="nl">stringFromDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]]];</span>
+</span><span class='line'>        <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">attrsDictionary</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">]</span>
+</span><span class='line'>                                                                    <span class="nl">forKey</span><span class="p">:</span><span class="n">NSForegroundColorAttributeName</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="bp">NSAttributedString</span> <span class="o">*</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSAttributedString</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithString</span><span class="p">:</span><span class="n">title</span> <span class="nl">attributes</span><span class="p">:</span><span class="n">attrsDictionary</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="n">attributedTitle</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="n">endRefreshing</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<h3>執行結果如下:</h3>
+
+<p><img src="/images//2015/08/20150821_1.png"></p>
+
+<h3>參考資料</h3>
+
+<p><a href=http://www.appcoda.com/pull-to-refresh-uitableview-empty/>Pull to refresh uitableviw</a></p>
+
+<p><a href=https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIRefreshControl_class/>官方文件</a></p>
+</div>
+
+</article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	
+	
+	
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+</div>
+			</div>
+			<footer id="footer" class="inner">Copyright &copy; 2015
+
+    tuzr
+
+
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+		</div>
+	</div>
+	
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+
+
+
+</body>
+</html>

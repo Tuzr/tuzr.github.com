@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Supershy 極度害躁]]></title>
-  <link href="http://tuzr.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: ios | Supershy 極度害躁]]></title>
+  <link href="http://tuzr.github.io/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
   <updated>2015-09-25T14:43:30+08:00</updated>
   <id>http://tuzr.github.io/</id>
@@ -33,11 +33,11 @@
 
 <p>但如果server並沒有支援TLS認證,就需要在appname_info.plist新增如下</p>
 
-<p><img src="http://tuzr.github.io/images//2015/09/20150925_1.png"></p>
+<p><img src="/images//2015/09/20150925_1.png"></p>
 
 <p><font color=#FF0000 size=3>這是關閉所有的ATS , 並不建議採用,正確做法應該使用例外的domain,如下列方法.</font></p>
 
-<figure class='code'><figcaption><span>info.plist </span></figcaption>
+<p><figure class='code'><figcaption><span>info.plist </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -74,8 +74,7 @@
 </span><span class='line'>    <span class="nt">&lt;/dict&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/dict&gt;</span>
 </span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3>參考資料</h3>
 
@@ -111,7 +110,7 @@
 tintColor為 旋轉圈圈的顏色,
 最後當下拉的時候會呼叫relodData()</p>
 
-<figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
+<p><figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -125,21 +124,24 @@ tintColor為 旋轉圈圈的顏色,
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nv">animated</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">super</span> <span class="nl">viewWillAppear</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">super</span> <span class="nl">viewWillAppear</span><span class="p">:</span><span class="n">animated</span><span class="p">];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span> <span class="n">reloadData</span><span class="p">];</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">[</span><span class="nb">self</span> <span class="n">reloadData</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIRefreshControl</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">];</span>
-</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="nl">addTarget</span><span class="p">:</span><span class="nb">self</span>
-</span><span class='line'>                            <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">reloadData</span><span class="p">)</span>
-</span><span class='line'>                  <span class="nl">forControlEvents</span><span class="p">:</span><span class="n">UIControlEventValueChanged</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">UIRefreshControl</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">whiteColor</span><span class="p">];</span>
+</span><span class='line'><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">tintColor</span> <span class="o">=</span> <span class="p">[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">];</span>
+</span><span class='line'><span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="nl">addTarget</span><span class="p">:</span><span class="nb">self</span>
+</span><span class='line'>                        <span class="nl">action</span><span class="p">:</span><span class="k">@selector</span><span class="p">(</span><span class="n">reloadData</span><span class="p">)</span>
+</span><span class='line'>              <span class="nl">forControlEvents</span><span class="p">:</span><span class="n">UIControlEventValueChanged</span><span class="p">];</span>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>在更新畫面中,除了轉圈之外,還有顯示更新的日期時間.</p>
 
@@ -148,7 +150,7 @@ tintColor為 旋轉圈圈的顏色,
 <pre><code>[self.refreshControl endRefreshing];
 </code></pre>
 
-<figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
+<p><figure class='code'><figcaption><span>TableViewController.m </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -168,33 +170,34 @@ tintColor為 旋轉圈圈的顏色,
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-(</span><span class="kt">void</span><span class="p">)</span><span class="nf">reloadData</span>
 </span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="c1">//載入資料</span>
+</span><span class='line'>    <span class="c1">//載入資料&lt;/p&gt;</span>
 </span><span class='line'>
-</span><span class='line'>    <span class="k">if</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="bp">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
-</span><span class='line'>        <span class="p">[</span><span class="n">formatter</span> <span class="nl">setDateFormat</span><span class="p">:</span><span class="s">@&quot;MMM d, h:mm:ss a&quot;</span><span class="p">];</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">if</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="bp">NSDateFormatter</span> <span class="o">*</span><span class="n">formatter</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSDateFormatter</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">formatter</span> <span class="nl">setDateFormat</span><span class="p">:</span><span class="s">@&quot;MMM d, h:mm:ss a&quot;</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="bp">NSString</span> <span class="o">*</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;Last update: %@&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">formatter</span> <span class="nl">stringFromDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]]];</span>
-</span><span class='line'>        <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">attrsDictionary</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">]</span>
-</span><span class='line'>                                                                    <span class="nl">forKey</span><span class="p">:</span><span class="n">NSForegroundColorAttributeName</span><span class="p">];</span>
+</span><span class='line'>    <span class="bp">NSString</span> <span class="o">*</span><span class="n">title</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSString</span> <span class="nl">stringWithFormat</span><span class="p">:</span><span class="s">@&quot;Last update: %@&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">formatter</span> <span class="nl">stringFromDate</span><span class="p">:[</span><span class="bp">NSDate</span> <span class="n">date</span><span class="p">]]];</span>
+</span><span class='line'>    <span class="bp">NSDictionary</span> <span class="o">*</span><span class="n">attrsDictionary</span> <span class="o">=</span> <span class="p">[</span><span class="bp">NSDictionary</span> <span class="nl">dictionaryWithObject</span><span class="p">:[</span><span class="bp">UIColor</span> <span class="n">blackColor</span><span class="p">]</span>
+</span><span class='line'>                                                                <span class="nl">forKey</span><span class="p">:</span><span class="n">NSForegroundColorAttributeName</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="bp">NSAttributedString</span> <span class="o">*</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSAttributedString</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithString</span><span class="p">:</span><span class="n">title</span> <span class="nl">attributes</span><span class="p">:</span><span class="n">attrsDictionary</span><span class="p">];</span>
+</span><span class='line'>    <span class="bp">NSAttributedString</span> <span class="o">*</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="p">[[</span><span class="bp">NSAttributedString</span> <span class="n">alloc</span><span class="p">]</span> <span class="nl">initWithString</span><span class="p">:</span><span class="n">title</span> <span class="nl">attributes</span><span class="p">:</span><span class="n">attrsDictionary</span><span class="p">];</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="n">attributedTitle</span><span class="p">;</span>
+</span><span class='line'>    <span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span><span class="p">.</span><span class="n">attributedTitle</span> <span class="o">=</span> <span class="n">attributedTitle</span><span class="p">;</span>
 </span><span class='line'>
-</span><span class='line'>        <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="n">endRefreshing</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>    <span class="p">[</span><span class="nb">self</span><span class="p">.</span><span class="n">refreshControl</span> <span class="n">endRefreshing</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
+</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3>執行結果如下:</h3>
 
-<p><img src="http://tuzr.github.io/images//2015/08/20150821_1.png"></p>
+<p><img src="/images//2015/08/20150821_1.png"></p>
 
 <h3>參考資料</h3>
 
@@ -259,13 +262,12 @@ tintColor為 旋轉圈圈的顏色,
 
 <p>參考如下範例:</p>
 
-<figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
+<p><figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">headerView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">_tev</span><span class="p">.</span><span class="n">frame</span><span class="p">),</span> <span class="n">height</span><span class="p">);</span>
 </span><span class='line'><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="o">=</span> <span class="n">headerView</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>如有興趣可以下載整個Demo專案:
 <a href=https://github.com/Tuzr/tableHeaderViewDemo>tableHeaderViewDemo</a></p>
@@ -273,23 +275,6 @@ tintColor為 旋轉圈圈的顏色,
 <h3>參考資料</h3>
 
 <p><a href=https://davidjhinson.wordpress.com/2009/03/24/resizing-a-uitableviews-tableheaderview/>Resizing a UITableView&rsquo;s tableHeaderView</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[First Open]]></title>
-    <link href="http://tuzr.github.io/blog/2015/07/29/first-open/"/>
-    <updated>2015-07-29T16:31:32+08:00</updated>
-    <id>http://tuzr.github.io/blog/2015/07/29/first-open</id>
-    <content type="html"><![CDATA[<p>Hello , everyone</p>
-
-<figure class='code'><figcaption><span>Test Code </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;Hello World&quot;</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
 ]]></content>
   </entry>
   
