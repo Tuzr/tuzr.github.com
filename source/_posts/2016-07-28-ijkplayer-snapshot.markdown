@@ -16,7 +16,7 @@ description: Ijkplaer Snapshot
 
 參考原始的<a href=https://github.com/bbcallen/ijkplayer>ijkplayer</a> ,以及<a href=https://github.com/jgfntu/ijkplayer/tree/snapshort>jgfntu</a>增加截圖功能.
 
-匯整在我的Github<a href=https://github.com/Tuzr/ijkplayer>ijkplayer</a>
+如下修改後的projet已經匯整在我的Github: <a href=https://github.com/Tuzr/ijkplayer>ijkplayer</a>
 
 ----
 詳細方法如下:
