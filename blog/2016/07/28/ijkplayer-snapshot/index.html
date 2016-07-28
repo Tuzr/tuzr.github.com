@@ -5,14 +5,12 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>UItableView:改變tableHeaderView大小 - Supershy 極度害躁</title>
+	<title>Ijkplayer Snapshot - Supershy 極度害躁</title>
 	<meta name="author" content="tuzr">
 
 	
-	<meta name="description" content="UItableView:改變tableHeaderView大小 前言 最近遇到一個狀況,在原有的tableView上面,必須要增加新的欄位.
-這時候有兩個方式: 加入一個Section
-使用tableView本身的tableHeaderView去實作 這兩個方法各有優缺, &hellip;">
-	
+	<meta name="description" content="Ijkplaer Snapshot">
+	<meta name="keywords" content="ijkplayer snpshot">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -21,7 +19,7 @@
 
 	<link href="" rel="alternate" title="Supershy 極度害躁" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://tuzr.github.io/blog/2015/08/18/title/">
+	<link rel="canonical" href="http://tuzr.github.io/blog/2016/07/28/ijkplayer-snapshot/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -97,71 +95,105 @@
 			
 			<div class="mid-col-container">
 				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name">UItableView:改變tableHeaderView大小</h1>
-	<div class="entry-content" itemprop="articleBody"><h3>前言</h3>
+	<h1 class="title" itemprop="name">Ijkplayer Snapshot</h1>
+	<div class="entry-content" itemprop="articleBody"><h3>Issue</h3>
 
-<p>最近遇到一個狀況,在原有的tableView上面,必須要增加新的欄位.<br/>
-這時候有兩個方式:</p>
-
-<ul>
-<li>加入一個Section</li>
-<li>使用tableView本身的tableHeaderView去實作</li>
-</ul>
-
-
-<p>這兩個方法各有優缺,如果增加的不是一行一行的tableView類型,那就得用tableHeaderView去實作。</p>
+<p>在Android使用Ijkplayer播放影片, 預設並沒有支援rtsp以及截圖功能,
+因此修改config增加支援rtsp串流播放, 以及增加截圖功能。</p>
 
 <!--more-->
 
 
-<p>畢竟tableHeaderView就是獨立的View,我們可以自訂裡面所顯示的內容。</p>
+<h3>Solution</h3>
 
-<p>相對的如果是一行一行的tabeleView類型,就可以利用增加Section的方式,</p>
+<p>參考原始的<a href=https://github.com/bbcallen/ijkplayer>ijkplayer</a> ,以及<a href=https://github.com/jgfntu/ijkplayer/tree/snapshort>jgfntu</a>增加截圖功能.</p>
 
-<p>在Section 0這個位置插入一個Section,原本的Section 0往下移變成Section 1。</p>
+<p>匯整在我的Github<a href=https://github.com/Tuzr/ijkplayer>ijkplayer</a></p>
 
-<h3>實作</h3>
+<hr />
 
-<pre><code>    But 人生就是這個 But...       
+<p>詳細方法如下:</p>
+
+<p>下載</p>
+
+<p>從<a href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a> 下載</p>
+
+<p>設定好環境變數 , ANDROID_SDK, ANDROID_NDK等.</p>
+
+<h5><font color=#FF0000>*下載之後, 需要修改config改為使用module-default.sh</font></h5>
+
+<pre><code>cd config
+rm module.sh
+ln -s module-default.sh module.sh
 </code></pre>
 
-<p>新增的欄位,可能跟原本tableView的欄位資料完全不相干,</p>
+<h5><font color=#FF0000>*參照下列底層檔案修改方式修改</font></h5>
 
-<p>這個新增的Section反而成了大麻煩,</p>
+<ul>
+<li><p>ijkmedia/ijkplayer/Android.mk
+<img src="/images//2016/07/20160728_1.png"></p></li>
+<li><p>ijkmedia/ijkplayer/android/ijkplayer_jni.c
+<img src="/images//2016/07/20160728_2.png">
+<img src="/images//2016/07/20160728_3.png">
+<img src="/images//2016/07/20160728_4.png"></p></li>
+<li><p>ijkmedia/ijkplayer/ff_ffplay.c
+<img src="/images//2016/07/20160728_5.png"></p></li>
+</ul>
 
-<p>要特別為了他改寫TableViewDataSource,TablieViewDeleGate相關function.</p>
 
-<p>甚至cell也要重寫。</p>
+<p>依照下列官方方式建置</p>
 
-<p>因此&hellip;</p>
+<pre><code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android
+cd ijkplayer-android
+git checkout -B latest k0.5.1
 
-<p>我決定另外設計一個tableView,用來顯示在原本tableView的tableHeaderView.(好繞口)</p>
+./init-android.sh
 
-<p>也就是tableView A的tableHeaderView是tableView B,如此便可以達到完全獨立不會互相影響.</p>
+cd android/contrib
+./compile-ffmpeg.sh clean
+./compile-ffmpeg.sh all
 
-<pre><code>    當tableHeaderView改變大小的時候,原有的tableView還會正常顯示嗎?  
+cd ..
+./compile-ijk.sh all
 </code></pre>
 
-<p>是的,不會!!!! 當tableHeaderView長大的時候,原本tableView的第一列可能會被蓋住!</p>
+<p>建置完成後, 打開ijkplayer專案 (/android/ijkplayer)
+即可看到各個平台的lib以及範例App</p>
 
-<p>解決方法：當改變tableHeaderView的大小之後,重新指定給原本的tableView.</p>
+<h5><font color=#FF0000>**因為底層增加截圖function, 所以Java程式也需要增加對應的function, 否則會在載入lib的時候報錯.</font></h5>
 
-<p>參考如下範例:</p>
+<p><a href =https://github.com/jgfntu/ijkplayer/commit/fe3a46d2032e6468e490a3c6df927eea59dc7c4e>參考Java修改紀錄</a></p>
 
-<figure class='code'><figcaption><span>tableHeaderView change frame </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">headerView</span><span class="p">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">CGRectMake</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">_tev</span><span class="p">.</span><span class="n">frame</span><span class="p">),</span> <span class="n">height</span><span class="p">);</span>
-</span><span class='line'><span class="n">tableView</span><span class="p">.</span><span class="n">tableHeaderView</span> <span class="o">=</span> <span class="n">headerView</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li><p>IMediaPlayer.java 增加getCurrentFrame <br>
+<img src="/images//2016/07/20160728_6.png"></p></li>
+<li><p>IJKMediaPlayer.java <br>
+<img src="/images//2016/07/20160728_7.png"></p></li>
+<li><p>MediaPlayerProxy.java <br>
+<img src="/images//2016/07/20160728_8.png"></p></li>
+<li>ijkVideoView.java <br>
+<img src="/images//2016/07/20160728_9.png"></li>
+<li>ijkExoMdeiaPlayer.java <br>
+<img src="/images//2016/07/20160728_10.png"></li>
+<li>AndroidMediaPlayer <br>
+<img src="/images//2016/07/20160728_11.png"></li>
+</ul>
 
 
-<p>如有興趣可以下載整個Demo專案:
-<a href=https://github.com/Tuzr/tableHeaderViewDemo>tableHeaderViewDemo</a></p>
+<h5><font color=#FF0000>*到目前為止,只是編譯會過, 執行RSTP正常!</font> <br></h5>
+
+<h5><font color=#FF0000>*要測試抓圖功能, 可以參考下列Github專案 , Branch:snapshot</font></h5>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/blob/snapshort/android/ijkmediademo/src/tv/danmaku/ijk/media/demo/VideoPlayerActivity.java>Demo</a> <br>
+<a href=https://github.com/jgfntu/ijkplayer/blob/snapshort/android/ijkmediademo/src/tv/danmaku/ijk/media/demo/ImageUtils.java>ImageUtils.java</a></p>
 
 <h3>參考資料</h3>
 
-<p><a href=https://davidjhinson.wordpress.com/2009/03/24/resizing-a-uitableviews-tableheaderview/>Resizing a UITableView&rsquo;s tableHeaderView</a></p>
+<p><a href=https://github.com/jgfntu/ijkplayer/tree/snapshort>選擇Branch: snapshot</a></p>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/commit/b1efc14f88cc792ed1c221b9f4e257e27175762a>底層檔案修改紀錄</a></p>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/commit/fe3a46d2032e6468e490a3c6df927eea59dc7c4e>Java檔案修改紀錄</a></p>
 </div>
 
 </article>

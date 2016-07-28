@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: android | Supershy 極度害躁]]></title>
+  <link href="http://tuzr.github.io/blog/categories/android/atom.xml" rel="self"/>
+  <link href="http://tuzr.github.io/"/>
+  <updated>2016-07-28T13:12:24+08:00</updated>
+  <id>http://tuzr.github.io/</id>
+  <author>
+    <name><![CDATA[tuzr]]></name>
+    <email><![CDATA[tuzr2002@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ijkplayer Snapshot]]></title>
+    <link href="http://tuzr.github.io/blog/2016/07/28/ijkplayer-snapshot/"/>
+    <updated>2016-07-28T11:22:32+08:00</updated>
+    <id>http://tuzr.github.io/blog/2016/07/28/ijkplayer-snapshot</id>
+    <content type="html"><![CDATA[<h3>Issue</h3>
+
+<p>在Android使用Ijkplayer播放影片, 預設並沒有支援rtsp以及截圖功能,
+因此修改config增加支援rtsp串流播放, 以及增加截圖功能。</p>
+
+<!--more-->
+
+
+<h3>Solution</h3>
+
+<p>參考原始的<a href=https://github.com/bbcallen/ijkplayer>ijkplayer</a> ,以及<a href=https://github.com/jgfntu/ijkplayer/tree/snapshort>jgfntu</a>增加截圖功能.</p>
+
+<p>匯整在我的Github<a href=https://github.com/Tuzr/ijkplayer>ijkplayer</a></p>
+
+<hr />
+
+<p>詳細方法如下:</p>
+
+<p>下載</p>
+
+<p>從<a href="https://github.com/Bilibili/ijkplayer">https://github.com/Bilibili/ijkplayer</a> 下載</p>
+
+<p>設定好環境變數 , ANDROID_SDK, ANDROID_NDK等.</p>
+
+<h5><font color=#FF0000>*下載之後, 需要修改config改為使用module-default.sh</font></h5>
+
+<pre><code>cd config
+rm module.sh
+ln -s module-default.sh module.sh
+</code></pre>
+
+<h5><font color=#FF0000>*參照下列底層檔案修改方式修改</font></h5>
+
+<ul>
+<li><p>ijkmedia/ijkplayer/Android.mk
+<img src="/images//2016/07/20160728_1.png"></p></li>
+<li><p>ijkmedia/ijkplayer/android/ijkplayer_jni.c
+<img src="/images//2016/07/20160728_2.png">
+<img src="/images//2016/07/20160728_3.png">
+<img src="/images//2016/07/20160728_4.png"></p></li>
+<li><p>ijkmedia/ijkplayer/ff_ffplay.c
+<img src="/images//2016/07/20160728_5.png"></p></li>
+</ul>
+
+
+<p>依照下列官方方式建置</p>
+
+<pre><code>git clone https://github.com/Bilibili/ijkplayer.git ijkplayer-android
+cd ijkplayer-android
+git checkout -B latest k0.5.1
+
+./init-android.sh
+
+cd android/contrib
+./compile-ffmpeg.sh clean
+./compile-ffmpeg.sh all
+
+cd ..
+./compile-ijk.sh all
+</code></pre>
+
+<p>建置完成後, 打開ijkplayer專案 (/android/ijkplayer)
+即可看到各個平台的lib以及範例App</p>
+
+<h5><font color=#FF0000>**因為底層增加截圖function, 所以Java程式也需要增加對應的function, 否則會在載入lib的時候報錯.</font></h5>
+
+<p><a href =https://github.com/jgfntu/ijkplayer/commit/fe3a46d2032e6468e490a3c6df927eea59dc7c4e>參考Java修改紀錄</a></p>
+
+<ul>
+<li><p>IMediaPlayer.java 增加getCurrentFrame <br>
+<img src="/images//2016/07/20160728_6.png"></p></li>
+<li><p>IJKMediaPlayer.java <br>
+<img src="/images//2016/07/20160728_7.png"></p></li>
+<li><p>MediaPlayerProxy.java <br>
+<img src="/images//2016/07/20160728_8.png"></p></li>
+<li>ijkVideoView.java <br>
+<img src="/images//2016/07/20160728_9.png"></li>
+<li>ijkExoMdeiaPlayer.java <br>
+<img src="/images//2016/07/20160728_10.png"></li>
+<li>AndroidMediaPlayer <br>
+<img src="/images//2016/07/20160728_11.png"></li>
+</ul>
+
+
+<h5><font color=#FF0000>*到目前為止,只是編譯會過, 執行RSTP正常!</font> <br></h5>
+
+<h5><font color=#FF0000>*要測試抓圖功能, 可以參考下列Github專案 , Branch:snapshot</font></h5>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/blob/snapshort/android/ijkmediademo/src/tv/danmaku/ijk/media/demo/VideoPlayerActivity.java>Demo</a> <br>
+<a href=https://github.com/jgfntu/ijkplayer/blob/snapshort/android/ijkmediademo/src/tv/danmaku/ijk/media/demo/ImageUtils.java>ImageUtils.java</a></p>
+
+<h3>參考資料</h3>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/tree/snapshort>選擇Branch: snapshot</a></p>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/commit/b1efc14f88cc792ed1c221b9f4e257e27175762a>底層檔案修改紀錄</a></p>
+
+<p><a href=https://github.com/jgfntu/ijkplayer/commit/fe3a46d2032e6468e490a3c6df927eea59dc7c4e>Java檔案修改紀錄</a></p>
+]]></content>
+  </entry>
+  
+</feed>
