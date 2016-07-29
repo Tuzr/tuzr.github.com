@@ -33,16 +33,16 @@ description: Ijkplaer Snapshot
 	rm module.sh
 	ln -s module-default.sh module.sh
 #####<font color=#FF0000>*參照下列底層檔案修改方式修改</font>
-* ijkmedia/ijkplayer/Android.mk
-{% img /images//2016/07/20160728_1.png %}
+* ijkmedia/ijkplayer/Android.mk<br>
+{% img /images//2016/07/20160728_1.png %}<br>
 
-* ijkmedia/ijkplayer/android/ijkplayer_jni.c
-{% img /images//2016/07/20160728_2.png %}
-{% img /images//2016/07/20160728_3.png %}
-{% img /images//2016/07/20160728_4.png %}
+* ijkmedia/ijkplayer/android/ijkplayer_jni.c<br>
+{% img /images//2016/07/20160728_2.png %}<br>
+{% img /images//2016/07/20160728_3.png %}<br>
+{% img /images//2016/07/20160728_4.png %}<br>
 
-* ijkmedia/ijkplayer/ff_ffplay.c
-{% img /images//2016/07/20160728_5.png %}
+* ijkmedia/ijkplayer/ff_ffplay.c<br>
+{% img /images//2016/07/20160728_5.png %}<br>
 
 依照下列官方方式建置
 
