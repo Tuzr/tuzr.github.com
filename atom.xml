@@ -4,7 +4,7 @@
   <title><![CDATA[Supershy 極度害躁]]></title>
   <link href="http://tuzr.github.io/atom.xml" rel="self"/>
   <link href="http://tuzr.github.io/"/>
-  <updated>2016-07-28T13:50:31+08:00</updated>
+  <updated>2016-07-29T14:07:16+08:00</updated>
   <id>http://tuzr.github.io/</id>
   <author>
     <name><![CDATA[tuzr]]></name>
@@ -52,14 +52,14 @@ ln -s module-default.sh module.sh
 <h5><font color=#FF0000>*參照下列底層檔案修改方式修改</font></h5>
 
 <ul>
-<li><p>ijkmedia/ijkplayer/Android.mk
-<img src="http://tuzr.github.io/images//2016/07/20160728_1.png"></p></li>
-<li><p>ijkmedia/ijkplayer/android/ijkplayer_jni.c
-<img src="http://tuzr.github.io/images//2016/07/20160728_2.png">
-<img src="http://tuzr.github.io/images//2016/07/20160728_3.png">
-<img src="http://tuzr.github.io/images//2016/07/20160728_4.png"></p></li>
-<li><p>ijkmedia/ijkplayer/ff_ffplay.c
-<img src="http://tuzr.github.io/images//2016/07/20160728_5.png"></p></li>
+<li><p>ijkmedia/ijkplayer/Android.mk<br>
+<img src="http://tuzr.github.io/images//2016/07/20160728_1.png"><br></p></li>
+<li><p>ijkmedia/ijkplayer/android/ijkplayer_jni.c<br>
+<img src="http://tuzr.github.io/images//2016/07/20160728_2.png"><br>
+<img src="http://tuzr.github.io/images//2016/07/20160728_3.png"><br>
+<img src="http://tuzr.github.io/images//2016/07/20160728_4.png"><br></p></li>
+<li><p>ijkmedia/ijkplayer/ff_ffplay.c<br>
+<img src="http://tuzr.github.io/images//2016/07/20160728_5.png"><br></p></li>
 </ul>
 
 
